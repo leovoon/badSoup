@@ -39,7 +39,7 @@ export default {
 <style>
 .container {
   margin: 0 auto;
-  min-height: 90vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -58,7 +58,7 @@ export default {
   font-size: 2rem;
   color: #35495e;
   font-weight: 300;
-}
+  }
 
 article {
   background-color: rgba(0, 197, 142, 0.1);
