@@ -1,21 +1,22 @@
 <template>
   <div>
-    <Navigation/>
-    <Nuxt />
+    <Navigation />
+    <slot />
   </div>
 </template>
 
+<script>
+import Navigation from "../components/Navigation.vue";
+
+export default {
+  components: { Navigation },
+};
+</script>
+
 <style>
 html {
-  font-family:
-    'Source Sans Pro',
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    'Helvetica Neue',
-    Arial,
-    sans-serif;
+  font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, sans-serif;
   font-size: 16px;
   word-spacing: 1px;
   -ms-text-size-adjust: 100%;
@@ -41,15 +42,21 @@ html {
   opacity: 0;
 }
 
-.jackInTheBox-enter-active, .jackInTheBox-leave-active { animation: jackInTheBox .8s; }
-  .jackInTheBox-enter, .jackInTheBox-leave-active { animation: jackInTheBox .5s; }
+.jackInTheBox-enter-active,
+.jackInTheBox-leave-active {
+  animation: jackInTheBox 0.8s;
+}
+.jackInTheBox-enter,
+.jackInTheBox-leave-active {
+  animation: jackInTheBox 0.5s;
+}
 
 .button--green {
   font-size: 1rem;
   display: inline-block;
   border-radius: 4px;
   border: 1px solid #3b8070;
-    color: #fff;
+  color: #fff;
   background-color: #3b8070;
   text-decoration: none;
   padding: 1rem 3rem;
@@ -60,7 +67,5 @@ html {
 .button--green:hover {
   color: #fff;
   background-color: #62998c;
-  
 }
-
 </style>

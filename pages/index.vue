@@ -1,39 +1,30 @@
 <template>
   <div class="container">
     <h1 class="title">每日一句毒鸡汤</h1>
-    <transition name="jackInTheBox">
+    <transition-fade>
       <article v-if="show">
-        <keep-alive>
-          <h2 class="subtitle">{{ msg }}</h2>
-        </keep-alive>
+        <h2 class="subtitle">{{ msg }}</h2>
       </article>
-    </transition>
+    </transition-fade>
     <button @click="fetchSoup" class="button--green">来一个</button>
   </div>
 </template>
 
 <script>
-import Navigation from "../components/Navigation.vue";
-export default {
-  components: { Navigation },
-
-  data() {
+import { TransitionFade } from "@morev/vue-transitions";
+export default defineNuxtComponent({
+  async asyncData() {
+    const res = await $fetch(
+      "https://cors-anywhere.herokuapp.com/https://soul-soup.fe.workers.dev/"
+    );
     return {
-      msg: "按下面",
-      show: false,
+      data: {
+        msg: res.title,
+        show: true,
+      },
     };
   },
-
-  methods: {
-    async fetchSoup() {
-      const res = await this.$axios.$get(
-        "https://cors-anywhere.herokuapp.com/https://soul-soup.fe.workers.dev/"
-      );
-      this.msg = res.title;
-      this.show = true;
-    },
-  },
-};
+});
 </script>
 
 <style>
@@ -58,7 +49,7 @@ export default {
   font-size: 2rem;
   color: #35495e;
   font-weight: 300;
-  }
+}
 
 article {
   background-color: rgba(0, 197, 142, 0.1);
