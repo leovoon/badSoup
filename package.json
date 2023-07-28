@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@morev/vue-transitions": "^2.3.6",
-    "@nuxt/kit": "^14.18.0",
+    "@nuxt/kit": "^3.6.5",
     "core-js": "^3.6.5",
     "nuxt": "^3.6.5"
   }
