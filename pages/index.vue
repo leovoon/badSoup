@@ -2,29 +2,23 @@
   <div class="container">
     <h1 class="title">每日一句毒鸡汤</h1>
     <transition-fade>
-      <article v-if="show">
-        <h2 class="subtitle">{{ msg }}</h2>
+      <article v-if="show && data">
+        <h2 class="subtitle">{{ data.title }}</h2>
       </article>
     </transition-fade>
-    <button @click="fetchSoup" class="button--green">来一个</button>
+    <button @click="handleClick" class="button--green">来一个</button>
   </div>
 </template>
 
-<script>
+<script setup>
 import { TransitionFade } from "@morev/vue-transitions";
-export default defineNuxtComponent({
-  async asyncData() {
-    const res = await $fetch(
-      "https://cors-anywhere.herokuapp.com/https://soul-soup.fe.workers.dev/"
-    );
-    return {
-      data: {
-        msg: res.title,
-        show: true,
-      },
-    };
-  },
-});
+const show = ref(false);
+const { data, execute } = await useFetch("/api/soup", { pick: ["title"] });
+
+const handleClick = () => {
+  show.value = true;
+  execute();
+};
 </script>
 
 <style>
